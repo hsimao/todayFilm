@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <button>抓出電影</button>
+    <h1>現正熱映中</h1>
+    <button @click="getFilms">重抓電影</button>
     <!-- <p>{{ films }}</p> -->
     <ul>
       <li v-for="film in films" :key="film.id">
@@ -12,7 +12,6 @@
         </a>
       </li>
     </ul>
-    <router-view/>
   </div>
 </template>
 
@@ -26,23 +25,37 @@ export default {
   },
   methods: {
     setFilms(data) {
+      // 當天資料只抓一次，並儲存到本地端，如果隔天又使用才重新爬一次資料
+      localStorage.setItem('timestamp', new Date().getTime())
       localStorage.setItem('films', JSON.stringify(data))
       this.films = data
     },
     filmsInit() {
-      if (localStorage.getItem('films')) {
-        this.films = JSON.parse(localStorage.getItem('films'))
+      // 如果本地沒有資料，直接重新爬資料
+      if (!localStorage.getItem('films')) return this.getFilms()
 
+      // 如果本地已經有資料了，但保存超過一天 或 已經是隔天了, 重新爬資料
+      const now = new Date()
+      const last = new Date(JSON.parse(localStorage.getItem('timestamp')))
+      if ( now.getTime() - last.getTime() > 86400000 || now.getDate() > last.getDate() ) {
+        console.log("重抓")
+        this.getFilms()
       } else {
-        this.$http.get('/api/film')
-          .then((res) => {
-            console.log(res.data)
-            this.setFilms(res.data)
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+        console.log("不重抓")
+        localStorage.getItem('timestamp')
+        this.films = JSON.parse(localStorage.getItem('films'))
       }
+
+    },
+    getFilms() {
+      this.$http.get('/api/film')
+        .then((res) => {
+          this.setFilms(res.data)
+          alert('抓完')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
   computed: {

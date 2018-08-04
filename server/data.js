@@ -9,7 +9,6 @@ const cheerio = require('cheerio');
 var d = new Date()
 var hour = d.getHours()
 var minute = d.getMinutes()
-// const films = [];
 
 // 列出當前熱映中的電影
 function getFilmList(callback) {
@@ -25,7 +24,6 @@ function getFilmList(callback) {
         url: `http://www.atmovies.com.tw/movie/${item.attribs.value}`
       })
     })
-    // console.log(films)
     callback(films)
   })
 }
@@ -39,11 +37,11 @@ function addFilmImg(films, callback) {
         const img = $('#filmTagBlock img');
         films[i].img = img.attr('src')
       })
-    }, 150*i)
+    }, 40*i)
   }
   setTimeout(() => {
     callback(films)
-  }, 150 * films.length + 1000)
+  }, 40 * films.length + 500)
 }
 
 // 接收電影名稱參數,返回電影id

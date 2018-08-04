@@ -6,6 +6,9 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+// global css
+import '@/style/index.sass' 
+
 Vue.config.productionTip = false
 
 Vue.use(VueAxios, axios)

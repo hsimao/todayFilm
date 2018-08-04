@@ -1,0 +1,39 @@
+// $color
+$colorPrimary: #13334c
+
+
+
+// == $mixin ==
+// clearfix 清除浮動
+@mixin clearfix
+	&:after
+		content: ""
+		display: table
+		clear: both
+
+// position absolute center 置中
+@mixin abCenter
+	position: absolute
+	top: 50%
+	left: 50%
+	transform: translate(-50%,-50%)
+
+// flex 排版置中
+@mixin flexCenter
+    display: flex
+    align-items: center
+    justify-content: center
+
+// rwd斷點
+@mixin rwd($breakpoint)
+	@if $breakpoint == xs
+		@media (max-width: 375px) { @content }
+	@if $breakpoint == sm
+		@media (max-width: 568px) { @content }
+	@if $breakpoint == pad
+		@media (max-width: 768px) { @content }
+	@if $breakpoint == md
+		@media (max-width: 1024px) { @content }
+	@if $breakpoint == lg
+		@media (max-width: 1200px) { @content }
+// == $mixin End ==

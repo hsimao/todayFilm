@@ -2,9 +2,8 @@
   <div id="app">
     <h1>現正熱映中</h1>
     <button @click="getFilms">重抓電影</button>
-    <!-- <p>{{ films }}</p> -->
-    <ul>
-      <li v-for="film in films" :key="film.id">
+    <ul class="films">
+      <li class="film" v-for="film in films" :key="film.id">
         <a :href="film.url">
           <p>{{film.name}}</p>
           <p>{{film.id}}</p>
@@ -37,7 +36,7 @@ export default {
       // 如果本地已經有資料了，但保存超過一天 或 已經是隔天了, 重新爬資料
       const now = new Date()
       const last = new Date(JSON.parse(localStorage.getItem('timestamp')))
-      if ( now.getTime() - last.getTime() > 86400000 || now.getDate() > last.getDate() ) {
+      if (now.getTime() - last.getTime() > 86400000 || now.getDate() > last.getDate()) {
         console.log("重抓")
         this.getFilms()
       } else {
@@ -45,7 +44,6 @@ export default {
         localStorage.getItem('timestamp')
         this.films = JSON.parse(localStorage.getItem('films'))
       }
-
     },
     getFilms() {
       this.$http.get('/api/film')
@@ -66,13 +64,37 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass" scoped>
+
+ul
+  list-style: none
+  margin: 0
+  padding: 0
+
+a
+  text-decoration: none
+  color: #777
+
+p
+  margin: 0
+  color: $colorPrimary
+
+.films
+  +flexCenter
+  flex-flow: row wrap
+  padding: 30px
+  text-align: center
+
+.film
+  margin-bottom: 30px
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.2)
+  padding-top: 20px
+
+.film + .film
+  margin-left: 30px
+
+img
+  display: block
+  padding-top: 10px
+
 </style>

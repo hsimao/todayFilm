@@ -2,9 +2,9 @@
   <div>
     <ul class="sidebar">
       <li class="sidebar-item logo">F.</li>
-      <li class="sidebar-item hover"><i class="ion ion-md-film"></i><span>今日場次</span></li>
-      <li class="sidebar-item hover"><i class="ion ion-md-flame"></i><span>熱映中</span></li>
-      <li class="sidebar-item hover"><i class="ion ion-md-star"></i><span>我的最愛</span></li>
+      <li class="sidebar-item hover"><span>今日場次</span><i class="ion ion-md-film"></i></li>
+      <li class="sidebar-item hover"><span>熱映中</span><i class="ion ion-md-flame"></i></li>
+      <li class="sidebar-item hover"><span>我的最愛</span><i class="ion ion-md-star"></i></li>
     </ul>
   </div>
 </template>
@@ -24,7 +24,8 @@ export default {
 
   &-item
     position: relative
-    padding: 16px 0
+    height: 70px
+    line-height: 70px
     text-align: center
     cursor: pointer
     overflow: hidden
@@ -34,9 +35,11 @@ export default {
       transition: all .3s .4s
     i
       font-size: 28px
+      transform: translate(0px, 3px)
     span
       position: absolute
-      transform: translateX(10%)
+      left: 0
+      transform: translateX(-100%)
       font-size: 16px
   &-item + &-item
     border-top: solid 1px lighten($colorGray, 10)
@@ -44,7 +47,8 @@ export default {
     font-size: 40px
     font-weight: 900
     line-height: 1
-    padding: 30px 0
+    height: 100px
+    line-height: 100px
 
   &-item.hover
     &:before
@@ -59,9 +63,9 @@ export default {
       transition: transform .3s, .3s, width .4s cubic-bezier(1,0,0,1) .3s
     &:hover
       i
-        transform: translateX(-100%)
+        transform: translate(100%, 3px)
       span
-        transform: translateX(-100%)
+        transform: translateX(0%)
       &:before
         width: 100%
         transform: scaleY(1)

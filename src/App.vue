@@ -55,7 +55,6 @@ $sidebarWidth: 80px
 
 .header
   height: 70px
-  border: solid 1px blue
   padding-left: 30px
 
 .container

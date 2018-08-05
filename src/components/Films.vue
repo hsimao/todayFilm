@@ -32,7 +32,7 @@ a
 
 p
   margin: 0
-  color: $colorPrimary
+  color: $colorWhite
 
 .films
   +flexCenter

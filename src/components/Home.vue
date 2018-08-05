@@ -3,7 +3,7 @@
     <h1>Home</h1>
     <h1>現正熱映中</h1>
     <button>重抓電影</button>
-    <!-- <Films :films="films" /> -->
+    <Films :films="films" />
   </div>
 </template>
 

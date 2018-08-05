@@ -56,6 +56,7 @@ $sidebarWidth: 80px
 .header
   height: 70px
   padding-left: 30px
+  // background-color: $colorGray
 
 .container
   max-wdith: 1140px - $sidebarWidth

@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="select" :class="{active: isShow}">
-      <div v-if="!current" class="title desc" @click="selectToggle(true)">{{title}}</div>
-      <div v-else class="title film" @click="selectToggle(true)">{{selectName}}</div>
+      <div v-if="!current" class="title desc" @click="selectToggle('toggle')">{{title}}</div>
+      <div v-else class="title film" @click="selectToggle('toggle')">{{selectName}}</div>
       <ul :class="{active: isShow}" @mouseleave="selectToggle(false)">
         <li v-for="item in items" :key="item" :class="{active: current === item}" @mouseover="updateAction($event)" @click="selectToggle(false)" :data-id="item">{{item}}</li>
       </ul>
@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'Select',
-  props: ['items', 'title'],
+  props: ['items', 'title', 'value', 'type'],
   data() {
     return {
       isShow: false,
@@ -23,10 +23,20 @@ export default {
   },
   methods: {
     selectToggle(type) {
-      this.isShow = type ? true : false
+      if (type === 'toggle') {
+        this.isShow = !this.isShow
+      } else {
+        console.log("觸發", type)
+        this.isShow = type ? true : false
+      }
     },
     updateAction(el) {
       this.selectName = el.target.innerText
+      const data = {
+        type: this.type,
+        value: el.target.innerText
+      }
+      this.$emit('selectFilm', data)
       if (this.current !== null) {
         this.current
       }
@@ -68,11 +78,10 @@ export default {
     top: 47px
     width: 100%
     height: 400px
-    border-right: solid 3px $colorPrimary
-    border-bottom: solid 3px $colorPrimary
-    border-left: solid 1px $colorPrimary
+    border-left: solid 2px $colorWhite
     box-shadow: 0 4px 6px 0 rgba(black, 0.2)
     overflow-y: auto
+    z-index: 10
   ul.active
     display: block
   li

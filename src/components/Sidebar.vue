@@ -60,7 +60,7 @@ export default {
       height: 100%
       background-color: $colorPrimary
       transform: scaleY(0)
-      transition: transform .3s, .3s, width .4s cubic-bezier(1,0,0,1) .3s
+      transition: transform .3s, width .4s cubic-bezier(1,0,0,1) .3s
     &:hover
       i
         transform: translate(100%, 3px)

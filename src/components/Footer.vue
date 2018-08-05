@@ -1,17 +1,15 @@
 <template>
   <div>
-    <h1>Footer</h1>
+    <div class="footer">
+      <h1>Footer</h1>
+    </div>
   </div>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar'
 
 export default {
-  name: 'Footer',
-  components: {
-    Sidebar
-  }
+  name: 'Footer'
 }
 </script>
 

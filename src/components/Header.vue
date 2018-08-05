@@ -1,16 +1,18 @@
 <template>
   <div>
-    <h1>Header</h1>
+    <div class="header">
+      <Search/>
+    </div>
   </div>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar'
+import Search from '@/components/Search'
 
 export default {
   name: 'Header',
   components: {
-    Sidebar
+    Search
   }
 }
 </script>

@@ -6,8 +6,6 @@
       <router-view/>
     </div>
     <Footer/>
-    <h1>現正熱映中</h1>
-    <button>重抓電影</button>
   </div>
 </template>
 
@@ -35,6 +33,35 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
+$sidebarWidth: 80px
+
+%sidebarLeft
+  width: calc(100% - $sidebarWidth)
+  margin-left: $sidebarWidth
+
+// $layout
+#app
+
+.sidebar
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: $sidebarWidth
+
+.header, .container, .footer
+  @extend %sidebarLeft
+
+.header
+  height: 70px
+  border: solid 1px blue
+  padding-left: 30px
+
+.container
+  max-wdith: 1140px - $sidebarWidth
+
+.footer
+  background-color: #fff
 
 </style>

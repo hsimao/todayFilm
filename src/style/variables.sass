@@ -1,5 +1,7 @@
 // $color
 $colorPrimary: #008FFF
+$colorPrimaryDark: #2D1C56
+$colorPrimary: #6F00F5
 $colorWhite: #fff
 $colorGray: #48454C
 $colorGrayLight: #757279
@@ -39,3 +41,23 @@ $colorGrayLight: #757279
 	@if $breakpoint == lg
 		@media (max-width: 1200px) { @content }
 // == $mixin End ==
+
+
+// == $extend ==
+%hCenter
+  &:before
+    content: ''
+    width: 0
+    height: 100%
+    display: inline-block
+    position: relative
+    vertical-align: middle
+  > *
+    display: inline-block
+    vertical-align: middle
+
+%moreText
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+// == $extend End ==

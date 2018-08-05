@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>Home</h1>
-    <Films :films="films" />
+    <h1>現正熱映中</h1>
+    <button>重抓電影</button>
+    <!-- <Films :films="films" /> -->
   </div>
 </template>
 

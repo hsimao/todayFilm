@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>Home</h1>
-    <h1>現正熱映中</h1>
+    <h1 class="title">熱映中</h1>
     <button>重抓電影</button>
     <Films :films="films" />
   </div>
@@ -26,6 +25,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass" scoped>
+.title
+  margin-left: 30px
+  color: $colorWhite
+  letter-spacing: 2px
+  font-weight: 400
 
 </style>
